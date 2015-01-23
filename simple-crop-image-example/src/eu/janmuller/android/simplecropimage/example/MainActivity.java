@@ -1,3 +1,4 @@
+
 package eu.janmuller.android.simplecropimage.example;
 
 import java.io.File;
@@ -25,18 +26,20 @@ public class MainActivity extends Activity {
     public static final String TAG = "MainActivity";
 
     public static final String TEMP_PHOTO_FILE_NAME = "temp_photo.jpg";
-    
-    public static final int REQUEST_CODE_GALLERY      = 0x1;
+
+    public static final int REQUEST_CODE_GALLERY = 0x1;
     public static final int REQUEST_CODE_TAKE_PICTURE = 0x2;
-    public static final int REQUEST_CODE_CROP_IMAGE   = 0x3;
+    public static final int REQUEST_CODE_CROP_IMAGE = 0x3;
 
     private ImageView mImageView;
-    private File      mFileTemp;
+    private File mFileTemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
+        super.onCreate(savedInstanceState); // To change body of overridden
+                                            // methods use File | Settings |
+                                            // File Templates.
         setContentView(R.layout.main);
 
         findViewById(R.id.gallery).setOnClickListener(new View.OnClickListener() {
@@ -56,14 +59,13 @@ public class MainActivity extends Activity {
         });
 
         mImageView = (ImageView) findViewById(R.id.image);
-        
-    	String state = Environment.getExternalStorageState();
-    	if (Environment.MEDIA_MOUNTED.equals(state)) {
-    		mFileTemp = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE_NAME);
-    	}
-    	else {
-    		mFileTemp = new File(getFilesDir(), TEMP_PHOTO_FILE_NAME);
-    	}
+
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            mFileTemp = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE_NAME);
+        } else {
+            mFileTemp = new File(getFilesDir(), TEMP_PHOTO_FILE_NAME);
+        }
 
     }
 
@@ -72,17 +74,18 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         try {
-        	Uri mImageCaptureUri = null;
-        	String state = Environment.getExternalStorageState();
-        	if (Environment.MEDIA_MOUNTED.equals(state)) {
-        		mImageCaptureUri = Uri.fromFile(mFileTemp);
-        	}
-        	else {
-	        	/*
-	        	 * The solution is taken from here: http://stackoverflow.com/questions/10042695/how-to-get-camera-result-as-a-uri-in-data-folder
-	        	 */
-	        	mImageCaptureUri = InternalStorageContentProvider.CONTENT_URI;
-        	}	
+            Uri mImageCaptureUri = null;
+            String state = Environment.getExternalStorageState();
+            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                mImageCaptureUri = Uri.fromFile(mFileTemp);
+            } else {
+                /*
+                 * The solution is taken from here:
+                 * http://stackoverflow.com/questions
+                 * /10042695/how-to-get-camera-result-as-a-uri-in-data-folder
+                 */
+                mImageCaptureUri = InternalStorageContentProvider.CONTENT_URI;
+            }
             intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
             intent.putExtra("return-data", true);
             startActivityForResult(intent, REQUEST_CODE_TAKE_PICTURE);
@@ -160,11 +163,9 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public static void copyStream(InputStream input, OutputStream output) throws IOException {
 
-    public static void copyStream(InputStream input, OutputStream output)
-            throws IOException {
-
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[1024 * 4];
         int bytesRead;
         while ((bytesRead = input.read(buffer)) != -1) {
             output.write(buffer, 0, bytesRead);

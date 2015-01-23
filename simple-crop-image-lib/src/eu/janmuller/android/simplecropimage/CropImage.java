@@ -184,27 +184,27 @@ public class CropImage extends MonitoredActivity {
                         }
                     }
                 });
-        findViewById(R.id.rotateLeft).setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-
-                        mBitmap = Util.rotateImage(mBitmap, -90);
-                        RotateBitmap rotateBitmap = new RotateBitmap(mBitmap);
-                        mImageView.setImageRotateBitmapResetBase(rotateBitmap, true);
-                        mRunFaceDetection.run();
-                    }
-                });
-
-        findViewById(R.id.rotateRight).setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-
-                        mBitmap = Util.rotateImage(mBitmap, 90);
-                        RotateBitmap rotateBitmap = new RotateBitmap(mBitmap);
-                        mImageView.setImageRotateBitmapResetBase(rotateBitmap, true);
-                        mRunFaceDetection.run();
-                    }
-                });
+//        findViewById(R.id.rotateLeft).setOnClickListener(
+//                new View.OnClickListener() {
+//                    public void onClick(View v) {
+//
+//                        mBitmap = Util.rotateImage(mBitmap, -90);
+//                        RotateBitmap rotateBitmap = new RotateBitmap(mBitmap);
+//                        mImageView.setImageRotateBitmapResetBase(rotateBitmap, true);
+//                        mRunFaceDetection.run();
+//                    }
+//                });
+//
+//        findViewById(R.id.rotateRight).setOnClickListener(
+//                new View.OnClickListener() {
+//                    public void onClick(View v) {
+//
+//                        mBitmap = Util.rotateImage(mBitmap, 90);
+//                        RotateBitmap rotateBitmap = new RotateBitmap(mBitmap);
+//                        mImageView.setImageRotateBitmapResetBase(rotateBitmap, true);
+//                        mRunFaceDetection.run();
+//                    }
+//                });
         startFaceDetection();
     }
 
