@@ -3,9 +3,10 @@ gen/
 png/
 target/
 .settings/
-.classpath
 *.class
 *.log
 *.iml
 .DS_Store
+local.properties
+
 
